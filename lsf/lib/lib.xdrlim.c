@@ -1206,6 +1206,7 @@ xdr_hostEntry(XDR *xdrs,
 
     if (!xdr_int(xdrs, &hPtr->rcv)
         || !xdr_int(xdrs, &hPtr->nDisks)
+        || !xdr_int(xdrs, &hPtr->maxCPUs)
         || !xdr_float(xdrs, &hPtr->cpuFactor))
         return FALSE;
 

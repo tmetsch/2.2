@@ -3043,6 +3043,11 @@ addHost_(struct clusterNode *clPtr,
     }
 
     hPtr->statInfo.nDisks = hEntPtr->nDisks;
+    if (hEntPtr->maxCPUs != NULL) {
+        hPtr->maxCPUs = hEntPtr->maxCPUs;
+    } else {
+        hPtr->maxCPUs = -1;
+    }
     hPtr->rexPriority = hEntPtr->rexPriority;
 
     for (i = 0; i < allInfo.numIndx; i++)

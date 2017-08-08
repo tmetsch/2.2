@@ -452,6 +452,11 @@ hostInfoReq(XDR *xdrs,
             infoPtr->flags |= HINFO_SHARED_RESOURCE;
         }
         infoPtr->rexPriority = candidates[i]->rexPriority;
+
+        if (candidates[i]->maxCPUs != -1) {
+            // this is the case lsaddhost was call with -M parameter.
+            infoPtr->maxCpus = candidates[i]->maxCPUs;
+        }
     }
     limReplyCode = LIME_NO_ERR;
 

@@ -25,7 +25,7 @@ usage(void)
     fprintf(stderr, "\
 lsaddhost: [-h] [-V] -m model -t type -f cpuFactor \
 -D numDisks -R \"resource list\" -w \"windows\" \
--b \"busy onlist \" [-v] hostname\n");
+-M maxCPUs -b \"busy onlist \" [-v] hostname\n");
 }
 static int getResList(struct hostEntry *, const char *);
 static int getBusyThr(struct hostEntry *, const char *);
@@ -55,7 +55,7 @@ main(int argc, char **argv)
     for (cc = 0; cc < 11; cc++)
         hPtr->busyThreshold[cc] = INFINIT_LOAD;
 
-    while ((cc = getopt(argc, argv, "Vhvm:t:f:D:R:w:b:")) != EOF) {
+    while ((cc = getopt(argc, argv, "Vhvm:t:f:D:R:w:b:M:")) != EOF) {
         switch (cc) {
             case 'V':
                 fputs(_LS_VERSION_, stderr);
@@ -84,6 +84,9 @@ main(int argc, char **argv)
                 break;
             case 'v':
                 v = 1; /* verbose */
+                break;
+            case 'M':
+                hPtr->maxCPUs = atoi(optarg);
                 break;
             case 'h':
             case '?':
@@ -187,4 +190,5 @@ printInfo(struct hostEntry *hPtr)
     printf("busyThresholds:\n");
     for (cc = 0; cc < hPtr->numIndx; cc++)
         printf("   %4.2f\n", hPtr->busyThreshold[cc]);
+    printf("maxCPUs: %d\n", hPtr->maxCPUs);
 }

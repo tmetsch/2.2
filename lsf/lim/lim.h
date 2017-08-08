@@ -128,6 +128,7 @@ struct hostNode {
     struct  hostNode *nextPtr;
     time_t  expireTime;
     uint8_t migrant;
+	int     maxCPUs;
 };
 
 #define CLUST_ACTIVE		0x00010000

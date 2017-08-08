@@ -379,6 +379,7 @@ struct hostEntry {
     char    **resList;
     int     rexPriority;
     char    *window;
+    int     maxCPUs;
 };
 
 struct config_param {
@@ -570,6 +571,7 @@ struct hostEntryLog {
     char    **resList;
     int     rexPriority;
     char    *window;
+    int     maxCPUs;
 };
 
 /* openlava error numbers
